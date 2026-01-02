@@ -19,9 +19,16 @@ public class RatingController {
     @RequestMapping(method= RequestMethod.GET, value="/{userId}")
     public List<Rating> getRatings(@PathVariable("userId") String userId){
         // create a temporary hard-coded list of ratings
-        // in reality you must search Rating's for matching 'userId'
+        // in reality service will search all Rating objects for matching 'userId'
         return ratingService.getRatings(userId);
     }
+
+    // webclient test
+    @RequestMapping(method= RequestMethod.GET, value="/bbanner")
+    public Rating getRatingBBanner(){
+        // create a temporary hard-coded list of ratings
+        // in reality service will search all Rating objects for matching 'userId'
+        return ratingService.getRatingBanner();}
 
     // ADD /ratings/{userId} - add a rating
     // @RequestMapping(method= RequestMethod.POST, value="/{userId}")

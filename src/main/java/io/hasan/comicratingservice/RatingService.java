@@ -30,6 +30,10 @@ public class RatingService {
         return user_rating;
     }
 
+    // webclient test
+    public Rating getRatingBanner(){
+        return new Rating("bbanner", "3", 10);}
+
     // add a comic ratings to userId
     // public String addRating(String userId, Rating rating){
         // insert code to add rating to db
