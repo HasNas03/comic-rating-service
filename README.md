@@ -20,7 +20,7 @@
 
 - Technologies
     - Current technologies: Java, Spring (Boot, Web, JPA), Maven, Git
-    - Future technologies: (SQL/MongoDB), AWS, Spring Security
+    - Future technologies: (SQL/MongoDB), Docker, AWS, Spring Security
 ---
 
 ---
@@ -34,15 +34,20 @@
   - **Rating (Entity)**
     - Rating(String userId, String comicId, int comicRating)
     - JPA entity representing a stored rating record, including the rater (userId), the target comic (comicId), and the numeric score (comicRating)
+
   - **ComicRating (Model)**
     - ComicRating(String id, Integer rating)
     - Lightweight DTO used in API responses to expose only the comic identifier (id) and the rating value (rating) (i.e., omits repeated userId per item in the response)
+
   - **UserRatings (Model)**
     - UserRatings(String user_id, List<ComicRating> user_ratings)
     - Response wrapper DTO for user-scoped endpoints: returns the user_id once and a list of that user’s ComicRating entries
+
   - **RatingController**
     - REST controller for the Ratings microservice (/ratings)
+
   - **RatingService**
     - Service layer containing the business logic
+
   - **RatingRepository**
     - Spring Data repository interface (CrudRepository) for performing CRUD operations on Rating entities (abstracts away the database access layer)
