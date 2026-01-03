@@ -9,11 +9,12 @@ import java.util.List;
 @Service
 public class RatingService {
     // 1. create future variable for Repository bean that will handle db CRUD
-    // private final RatingRepository ratingRepository;
+     private final RatingRepository ratingRepository;
 
     // 2. constructor (add Repo in future)
-    public RatingService(
-    ){}
+    public RatingService(RatingRepository ratingRepository){
+        this.ratingRepository = ratingRepository;
+    }
 
     // temporarily hard-coded rating db
     List<Rating> ratings_db = Arrays.asList(
@@ -38,8 +39,8 @@ public class RatingService {
     }
 
     // add a comic ratings to userId
-    // public String addRating(String userId, Rating rating){
-        // insert code to add rating to db
-    //     return "Rating added!";
-    // }
+     public String addRating(String userId, Rating rating){
+         ratingRepository.save(rating);
+         return "Rating added!";
+     }
 }
