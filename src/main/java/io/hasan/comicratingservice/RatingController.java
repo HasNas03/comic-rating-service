@@ -19,11 +19,15 @@ public class RatingController {
     // GET /ratings/{userId} - get ALL ratings of a user
     @RequestMapping(method= RequestMethod.GET, value="/{userId}")
     public UserRatings getRatings(@PathVariable("userId") String userId){
-        UserRatings to_send = ratingService.getRatings(userId);
-        return to_send;
+        return ratingService.getRatings(userId);
     }
 
-    // GET ??? - get A rating of a specific comic from a user
+    // GET /ratings/{userId}/{comicId} - get A rating of a specific comic from a user
+    @RequestMapping(method= RequestMethod.GET, value="/{userId}/{comicId}")
+    public UserRatings getRating(@PathVariable("userId") String userId,
+                                 @PathVariable("comicId") String comicId){
+        return ratingService.getRating(userId, comicId);
+    }
 
     // ADD /ratings/{userId} - add a rating
      @RequestMapping(method= RequestMethod.POST, value="/{userId}")

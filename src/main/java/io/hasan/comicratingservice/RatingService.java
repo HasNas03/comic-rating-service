@@ -25,7 +25,7 @@ public class RatingService {
             new Rating("tstark", "4", 8),
             new Rating("bbanner", "3", 10));
 
-
+    // get ALL ratings of a user
     public UserRatings getRatings(String userId){
         // 1. get raw list of Ratings
         List<ComicRating> raw_list_of_ratings
@@ -36,6 +36,20 @@ public class RatingService {
                 .toList();
         // 2. turn into one object: UserRatings
         return new UserRatings(userId, raw_list_of_ratings);
+    }
+
+    // get a specific rating
+    public UserRatings getRating(String userId, String comicId){
+        // 1. get raw list of Ratings
+        List<ComicRating> raw_list_of_rating
+                = ratings_db
+                .stream() // convert into stream
+                .filter(r -> r.getUserId().equals(userId))
+                .filter(r -> r.getComicId().equals(comicId))
+                .map(r -> new ComicRating(r.getComicId(), r.getComicRating()))
+                .toList();
+        // 2. turn into one object: UserRatings
+        return new UserRatings(userId, raw_list_of_rating);
     }
 
     // add a comic ratings to userId

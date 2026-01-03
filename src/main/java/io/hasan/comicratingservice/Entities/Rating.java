@@ -1,14 +1,19 @@
 package io.hasan.comicratingservice.Entities;
 
-// future @Entity
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Rating {
 
     // attributes
+    @Id
     private String userId;
     private String comicId;
     private int comicRating;
 
     // constructor
+    public Rating() {}
     public Rating(String userId, String comicId, int comicRating) {
         this.userId = userId;
         this.comicId = comicId;
