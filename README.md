@@ -12,7 +12,8 @@
 - The project is also a gateway for me to learn and practice:
     - backend development (Java & Spring)
     - best practices
-    - REST APIs
+    - developing REST APIs
+    - connecting to external APIs
     - cross-microservice creation/integration
     - testing and security
     - external database integration
