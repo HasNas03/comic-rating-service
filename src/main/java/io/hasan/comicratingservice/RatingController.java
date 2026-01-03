@@ -1,6 +1,6 @@
 package io.hasan.comicratingservice;
+import io.hasan.comicratingservice.Models.UserRatings;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
 
 @RestController
 @RequestMapping("/ratings")
@@ -17,10 +17,9 @@ public class RatingController {
 
     // GET /ratings/{userId} - get all ratings of a user
     @RequestMapping(method= RequestMethod.GET, value="/{userId}")
-    public List<Rating> getRatings(@PathVariable("userId") String userId){
-        // create a temporary hard-coded list of ratings
-        // in reality service will search all Rating objects for matching 'userId'
-        return ratingService.getRatings(userId);
+    public UserRatings getRatings(@PathVariable("userId") String userId){
+        UserRatings to_send = ratingService.getRatings(userId);
+        return to_send;
     }
 
     // ADD /ratings/{userId} - add a rating

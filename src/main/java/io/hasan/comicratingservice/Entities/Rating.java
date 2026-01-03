@@ -1,5 +1,6 @@
-package io.hasan.comicratingservice;
+package io.hasan.comicratingservice.Entities;
 
+// future @Entity
 public class Rating {
 
     // attributes
