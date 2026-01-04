@@ -14,7 +14,7 @@
     - best practices
     - developing REST APIs
     - connecting to external APIs
-    - cross-microservice creation/integration
+    - cross-microservice creation/integration/authentication
     - testing and security
     - external database integration
     - Cloud integration/hosting

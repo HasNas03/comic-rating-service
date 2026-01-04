@@ -39,18 +39,18 @@ public class RatingService {
     }
 
     // get a specific rating
-    public UserRatings getRating(String userId, String comicId){
+    // public UserRatings getRating(String userId, String comicId){
         // 1. get raw list of Ratings
-        List<ComicRating> raw_list_of_rating
-                = ratings_db
-                .stream() // convert into stream
-                .filter(r -> r.getUserId().equals(userId))
-                .filter(r -> r.getComicId().equals(comicId))
-                .map(r -> new ComicRating(r.getComicId(), r.getComicRating()))
-                .toList();
+    //     List<ComicRating> raw_list_of_rating
+    //             = ratings_db
+    //             .stream() // convert into stream
+    //             .filter(r -> r.getUserId().equals(userId))
+    //             .filter(r -> r.getComicId().equals(comicId))
+    //             .map(r -> new ComicRating(r.getComicId(), r.getComicRating()))
+    //             .toList();
         // 2. turn into one object: UserRatings
-        return new UserRatings(userId, raw_list_of_rating);
-    }
+    //     return new UserRatings(userId, raw_list_of_rating);
+    // }
 
     // add a comic ratings to userId
      public String addRating(String userId, Rating rating){

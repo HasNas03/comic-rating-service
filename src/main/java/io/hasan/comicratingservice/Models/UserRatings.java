@@ -3,7 +3,7 @@ import io.hasan.comicratingservice.Entities.Rating;
 
 import java.util.List;
 
-// Response wrapper class
+// wrapper class for the response object
 public class UserRatings {
     String user_id;
     List<ComicRating> user_ratings;
