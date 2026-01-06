@@ -6,17 +6,19 @@ import org.springframework.stereotype.Service;
 import java.util.Arrays;
 import java.util.List;
 
+// Service layer containing business logic for comic rating operations
 @Service
 public class RatingService {
-    // 1. create future variable for Repository bean that will handle db CRUD
+
+    // Declare Repository for persisting rating data
      private final RatingRepository ratingRepository;
 
-    // 2. constructor (add Repo in future)
+    // Constructor injection of RatingRepository dependency
     public RatingService(RatingRepository ratingRepository){
         this.ratingRepository = ratingRepository;
     }
 
-    // temporarily hard-coded rating db
+    // temporarily hard-coded rating db (will be replaced by the Repository embedded database)
     List<Rating> ratings_db = Arrays.asList(
             new Rating("bwayne", "1", 4),
             new Rating("bwayne", "4", 8),
@@ -27,7 +29,7 @@ public class RatingService {
 
     // get ALL ratings of a user
     public UserRatings getRatings(String userId){
-        // 1. get raw list of Ratings
+        // 1. get the raw list of Ratings
         List<ComicRating> raw_list_of_ratings
                 = ratings_db
                 .stream() // convert into stream
@@ -53,8 +55,8 @@ public class RatingService {
     // }
 
     // add a comic ratings to userId
-     public String addRating(String userId, Rating rating){
-         ratingRepository.save(rating);
-         return "Rating added!";
-     }
+    // public String addRating(String userId, Rating rating){
+    //     ratingRepository.save(rating);
+    //     return "Rating added!";
+    // }
 }

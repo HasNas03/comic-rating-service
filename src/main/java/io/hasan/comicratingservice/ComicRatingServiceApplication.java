@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class ComicRatingServiceApplication {
 
     public static void main(String[] args) {
+
         SpringApplication.run(ComicRatingServiceApplication.class, args);
     }
 

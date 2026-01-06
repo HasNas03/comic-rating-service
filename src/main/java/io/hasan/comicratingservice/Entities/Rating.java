@@ -3,16 +3,18 @@ package io.hasan.comicratingservice.Entities;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 
+// primary Rating entity used to store comic rating data
 @Entity
 public class Rating {
 
     // attributes
     @Id
     private String userId;
+    // *: potential type and purpose change for comicId: going from numbered ID to unique run title
     private String comicId;
     private int comicRating;
 
-    // constructor
+    // constructors
     public Rating() {}
     public Rating(String userId, String comicId, int comicRating) {
         this.userId = userId;

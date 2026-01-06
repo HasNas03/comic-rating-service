@@ -1,16 +1,21 @@
 package io.hasan.comicratingservice.Models;
 
+// DTO for transferring comic rating data without repetitive userId
 public class ComicRating {
-    String id;
-    Integer rating;
 
-    public ComicRating(String id, Integer rating) {
-        this.id = id;
-        this.rating = rating;
+    // attributes
+    String comicId;
+    Integer comicRating;
+
+    // constructor
+    public ComicRating(String comicId, Integer comicRating) {
+        this.comicId = comicId;
+        this.comicRating = comicRating;
     }
 
-    public String getId() {return id;}
-    public void setId(String id) {this.id = id;}
-    public Integer getRating() {return rating;}
-    public void setRating(Integer rating) {this.rating = rating;}
+    // getters and setters
+    public String getComicId() {return comicId;}
+    public void setComicId(String comicId) {this.comicId = comicId;}
+    public Integer getComicRating() {return comicRating;}
+    public void setComicRating(Integer comicRating) {this.comicRating = comicRating;}
 }
