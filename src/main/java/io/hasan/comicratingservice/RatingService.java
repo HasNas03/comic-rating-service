@@ -33,21 +33,30 @@ public class RatingService {
 
     // add a new rating
     public Rating addRating(Rating rating) {
-        validateRating(rating);
-//      ensureComicHasNotBeenRated(rating.getComicId(), null);
+        if (rating.getComicId() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "valid comicId is required");
+        }
 
-        UUID ratingId = UUID.randomUUID();
-        rating.setRatingId(ratingId);
-        ratingsDB.put(ratingId, rating);
-        return rating;}
+        validateScore(rating.getRatingScore());
+
+        boolean duplicateExists = ratingsDB.values()
+                .stream()
+                .anyMatch(existingRating -> existingRating.getComicId().equals(rating.getComicId()));
+
+        if (duplicateExists) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Comic already has a rating");
+        }
+
+        rating.setRatingId(UUID.randomUUID());
+        ratingsDB.put(rating.getRatingId(), rating);
+        return rating;
+    }
 
     // edit an existing rating
     public Rating updateRating(UUID id, Rating ratingUpdate) {
         Rating rating = getRating(id);
-        validateRating(ratingUpdate);
-//      ensureComicHasNotBeenRated(ratingUpdate.getComicId(), id);
+        validateScore(ratingUpdate.getRatingScore());
 
-        rating.setComicId(ratingUpdate.getComicId());
         rating.setRatingScore(ratingUpdate.getRatingScore());
         rating.setRatingReview(ratingUpdate.getRatingReview());
         return rating;}
@@ -59,32 +68,17 @@ public class RatingService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rating not found");}}
 
     // --- private helper functions ------------------------------------------------------
-
-    private void validateRating(Rating rating) {
-        if (rating.getComicId() == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "valid comicId is required");}
-        if (rating.getRatingScore() < 1 || rating.getRatingScore() > 10) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rating score must be between 1 and 10");}
-    }
-
     private Rating getRating(UUID id) {
         Rating rating = ratingsDB.get(id);
         if (rating == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Rating not found");
         }
-        return rating;
-    }
+        return rating;}
 
-//    private void ensureComicHasNotBeenRated(UUID comicId, UUID ratingIdToIgnore) {
-//        List<Rating> duplicateRatings = ratings.values()
-//                .stream()
-//                .filter(rating -> !rating.getId().equals(ratingIdToIgnore))
-//                .filter(rating -> rating.getComicId().equals(comicId))
-//                .toList();
-//
-//        if (!duplicateRatings.isEmpty()) {
-//            throw new ResponseStatusException(HttpStatus.CONFLICT, "Comic already has a rating");
-//        }
-//    }
+    private void validateScore(int score) {
+        if (score < 1 || score > 10) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Rating score must be between 1 and 10");
+        }
+    }
 }
 

@@ -10,6 +10,7 @@ public class Rating {
     private String ratingReview;
 
     // constructor for Rating object initialization
+    public Rating() {}
     public Rating(UUID comicId, int ratingScore, String ratingReview) {
         this.comicId = comicId;
         this.ratingScore = ratingScore;
