@@ -43,5 +43,5 @@
 GET    /ratings
 GET    /ratings/comics/{comicId}
 POST   /ratings
-PUT    /ratings/{id}
-DELETE /ratings/{id}
+PUT    /ratings/{ratingId}
+DELETE /ratings/{ratingId}
