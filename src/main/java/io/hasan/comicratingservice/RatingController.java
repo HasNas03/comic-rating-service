@@ -25,7 +25,7 @@ public class RatingController {
         return ratingService.getAllRatings();}
 
     // get a specific rating by comicId
-    @GetMapping("/{comicId}")
+    @GetMapping("/comics/{comicId}")
     public Rating getRatingForComic(@PathVariable UUID comicId) {
         return ratingService.getRatingForComic(comicId);}
 

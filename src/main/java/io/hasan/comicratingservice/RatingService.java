@@ -34,18 +34,15 @@ public class RatingService {
     // add a new rating
     public Rating addRating(Rating rating) {
         if (rating.getComicId() == null) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "valid comicId is required");
-        }
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "valid comicId is required");}
 
         validateScore(rating.getRatingScore());
 
         boolean duplicateExists = ratingsDB.values()
                 .stream()
                 .anyMatch(existingRating -> existingRating.getComicId().equals(rating.getComicId()));
-
         if (duplicateExists) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "Comic already has a rating");
-        }
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Comic already has a rating");}
 
         rating.setRatingId(UUID.randomUUID());
         ratingsDB.put(rating.getRatingId(), rating);
