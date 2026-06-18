@@ -20,8 +20,8 @@
     - Cloud integration/hosting
 
 - Technologies
-    - Current technologies: Java, Spring (Boot, Web), Netflix Eureka, Maven, Git
-    - Future technologies: (SQL/MongoDB), Docker, AWS, Spring Security
+    - Current technologies: Java, Spring (Boot, Web), Netflix Eureka, Maven, Git, PostgreSQL
+    - Future technologies : Docker, AWS, Spring Security
 ---
 
 ---
