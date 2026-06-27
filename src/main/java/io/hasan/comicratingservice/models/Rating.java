@@ -1,12 +1,24 @@
 package io.hasan.comicratingservice.models;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
+import jakarta.persistence.Column;
 import java.util.UUID;
 
+@Entity
+// no two Rating rows can share the same comicId (enforces one-rating-per-comic rule)
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "comicId"))
 public class Rating {
-
     // Rating object parameters
+    @Id
+    @GeneratedValue
     private UUID ratingId;
     private UUID comicId;
     private int ratingScore;
+    @Column(length = 2000)
     private String ratingReview;
 
     // constructor for Rating object initialization
